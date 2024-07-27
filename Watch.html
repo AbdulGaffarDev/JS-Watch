@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JS Clock</title>
+</head>
+<body>
+<div id="Clock">
+    <div id="Limit">
+        <div id="Time">
+    <span id="Hour">00</span>
+    <span>:</span>
+    <span id="Mins">00</span>
+    <span>:</span>
+    <span id="Secs">00</span>
+    <span id="AM">AM</span>
+        </div>
+    <div id="date">
+        <span id="Date">June 19,2023 </span>
+        <span id="day">Sunday</span>
+     </div>
+    </div>
+</div>
+
+    <style>
+        #Clock,#Limit,#Time{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+   font-size:xx-large;
+}
+#Clock{
+    height: 100vh;
+    width: 100vw;
+}
+#Limit{
+    padding: 8%;
+    color: white;
+    border: 3px solid blue;
+    background-color: black;
+    border-radius: 30px;
+    flex-direction: column;
+}
+#date{
+    padding-top: 3%;
+}
+    </style>
+    <script>
+     setInterval(TimeUpdater,1000);
+        function TimeUpdater(){
+        var timeNow=new Date();
+        var HoursNow=timeNow.getHours();
+        var MinsNow=timeNow.getMinutes();
+        var SecsNow=timeNow.getSeconds();
+        var DayNow=timeNow.getDay();
+        var MonthNow=timeNow.getMonth();
+        var YearNow=timeNow.getFullYear();
+        var DateNow=timeNow.getDate();
+        var MonthsArray=["January","February","March","April","May","June","July","August","September","October","November","December"]
+        var DaysArray=["Sun","Mon","Tues","Wednes","Thurs","Fri","Satur"]
+        if(HoursNow<=12 || HoursNow>23 ){
+            console.log(HoursNow)
+            document.getElementById("AM").innerHTML=" AM";
+            document.getElementById("Hour").innerHTML=("0"+ HoursNow).slice(-2)
+        }
+        else if(HoursNow>12){
+            document.getElementById("AM").innerHTML=" PM";
+            var timeManager=HoursNow-12
+            document.getElementById("Hour").innerHTML=("0"+timeManager).slice(-2)
+        }
+        document.getElementById("Mins").innerHTML=("0"+MinsNow).slice(-2)
+        document.getElementById("Secs").innerHTML=("0"+SecsNow).slice(-2)
+        document.getElementById("day").innerHTML=DaysArray[DayNow]+"day";
+        document.getElementById("Date").innerHTML=`${MonthsArray[MonthNow]}  ${DateNow},${YearNow}  `
+    }
+    </script>    
+</body>
+</html>
